@@ -1,28 +1,26 @@
-# grub-of-tsushima
+# Grub of Tsushima
 
-A GRUB2 bootloader theme inspired by **Ghost of Tsushima** — featuring a moody katana wallpaper, ink brush stroke selection highlight, and two variants to choose from.
+A GRUB2 bootloader theme inspired by **Ghost of Tsushima** — with two variants to choose from. This theme was written for a resolution of 1920x1080, other resolutions may require adjustments to theme.txt.
 
----
 
 ## Variants
 
-### White — *Ghost of Tsushima* (faithful to the game)
-Clean, minimal, no icons. Closely matches the actual GoT loading screen menu with a white brush stroke, Cantarell font, and icon-free entries.
+### *Ghost of Tsushima* - White (faithful to the game)
+Clean, minimal, no icons. Closely matches the actual GoT menu screen.
 
 ![preview-white](preview-white.jpg)
 
-### Black — *Original*
-The original version of the theme with icons, Dersu Uzala Brush calligraphic font, and a black brush stroke with red selected text.
+### *Ghost of Tsushima* - Black
+The original version of the theme with included icons.
 
 ![preview-black](preview-black.jpg)
 
----
 
 ## Installation
 
 1. Clone the repo or download the zip:
 ```bash
-git clone https://github.com/ivanimmanuel-dev/grub-of-tsushima.git
+git clone https://github.com/ivanimmanuel-dev/grub-of-tsushima
 ```
 
 2. Copy your preferred variant to your GRUB themes directory:
@@ -60,17 +58,15 @@ sudo update-grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
----
 
 ## Credits
 
-- Base theme structure inspired by [sekiro_grub_theme](https://github.com/AbijithBalaji/sekiro_grub_theme) by [AbijithBalaji](https://github.com/AbijithBalaji) — MIT License
+- Base theme structure inspired by [sekiro_grub_theme](https://github.com/AbijithBalaji/sekiro_grub_theme) by [AbijithBalaji](https://github.com/AbijithBalaji) - MIT License
 - Background artwork from Ghost of Tsushima, property of Sony Interactive Entertainment / Sucker Punch Productions — no ownership claimed
 - White variant font: [Cantarell](https://fonts.google.com/specimen/Cantarell)
 - Black variant font: [Dersu Uzala Brush](https://www.fontspace.com/dersu-uzala-brush-font-f29alternativer)
 - Terminal font: [Fira Code](https://github.com/tonsky/FiraCode)
 
----
 
 ## License
 
