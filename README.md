@@ -64,7 +64,7 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 - Base theme structure inspired by [sekiro_grub_theme](https://github.com/AbijithBalaji/sekiro_grub_theme) by [AbijithBalaji](https://github.com/AbijithBalaji) - MIT License
 - Background artwork from Ghost of Tsushima, property of Sony Interactive Entertainment / Sucker Punch Productions — no ownership claimed
 - White variant font: [Cantarell](https://fonts.google.com/specimen/Cantarell)
-- Black variant font: [Dersu Uzala Brush](https://www.fontspace.com/dersu-uzala-brush-font-f29alternativer)
+- Black variant font: [Dersu Uzala Brush](https://www.fontspace.com/dersu-uzala-brush-font-f20729)
 - Terminal font: [Fira Code](https://github.com/tonsky/FiraCode)
 
 
