@@ -1,0 +1,41 @@
+title-text: ""
+title-font: "Dersu Uzala brush Regular 60"
+desktop-image: "got_1920x1080.png"
+terminal-font: "Fira Code Regular 16"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+
+
++ boot_menu {
+    left = 0%
+    width = 30%
+    top = 35%
+    height = 700
+    item_height = 74
+    item_padding = 0
+    icon_width = 50
+    icon_height = 50
+    item_icon_space = 20
+    item_spacing = 5
+    item_font =  "Dersu Uzala brush Regular 54"
+    item_color = "#ffffff"
+    selected_item_font = "Dersu Uzala brush Regular 54"
+    selected_item_color = "#b14046"
+    selected_item_pixmap_style = "select_*.png"
+}
+
++ label {
+    id = "__timeout__"
+    left = 42%
+    top = 80%
+    width = 300
+    height = 20
+    font = "Fira Code Regular 20"
+    color = "#ffffff"
+    align = "center"
+    text = "Booting in %ds"
+}
