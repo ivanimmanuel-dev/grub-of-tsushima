@@ -1,0 +1,36 @@
+title-text: ""
+title-font: "Cantarell Regular 60"
+desktop-image: "got_1920x1080.png"
+terminal-font: "Fira Code Regular 16"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
++ boot_menu {
+    left = 0%
+    width = 35%
+    top = 15%
+    height = 700
+    item_height = 60
+    item_padding = 60
+    item_spacing = 20
+    item_font =  "Cantarell Regular 32"
+    item_color = "#D9DBDC"
+    selected_item_font = "Cantarell Regular 32"
+    selected_item_color = "#1C1C1C"
+    selected_item_pixmap_style = "select_*.png"
+}
+
++ label {
+    id = "__timeout__"
+    left = 42%
+    top = 80%
+    width = 300
+    height = 20
+    font = "Fira Code Regular 20"
+    color = "#ffffff"
+    align = "center"
+    text = "Booting in %ds"
+}
