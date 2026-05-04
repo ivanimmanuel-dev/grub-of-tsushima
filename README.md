@@ -1,19 +1,20 @@
 # grub-of-tsushima
 
-A GRUB2 bootloader theme inspired by **Ghost of Tsushima** — featuring a moody samurai aesthetic with a katana wallpaper, brush stroke selection highlight, and calligraphic fonts.
-
-![preview](preview.jpg)
+A GRUB2 bootloader theme inspired by **Ghost of Tsushima** — featuring a moody katana wallpaper, ink brush stroke selection highlight, and two variants to choose from.
 
 ---
 
-## Details
+## Variants
 
-| Property | Value |
-|----------|-------|
-| Resolution | 1920x1080 |
-| Font | Dersu Uzala Brush |
-| Terminal Font | Fira Code |
-| Icon set | 90+ distros |
+### White — *Ghost of Tsushima* (faithful to the game)
+Clean, minimal, no icons. Closely matches the actual GoT loading screen menu with a white brush stroke, Cantarell font, and icon-free entries.
+
+![preview-white](preview-white.jpg)
+
+### Black — *Original*
+The original version of the theme with icons, Dersu Uzala Brush calligraphic font, and a black brush stroke with red selected text.
+
+![preview-black](preview-black.jpg)
 
 ---
 
@@ -24,9 +25,13 @@ A GRUB2 bootloader theme inspired by **Ghost of Tsushima** — featuring a moody
 git clone https://github.com/ivanimmanuel-dev/grub-of-tsushima.git
 ```
 
-2. Copy the theme folder to your GRUB themes directory:
+2. Copy your preferred variant to your GRUB themes directory:
 ```bash
-sudo cp -r grub-of-tsushima /boot/grub/themes/
+# For the white variant:
+sudo cp -r grub-of-tsushima/grub-of-tsushima-white /boot/grub/themes/grub-of-tsushima
+
+# For the black variant:
+sudo cp -r grub-of-tsushima/grub-of-tsushima-black /boot/grub/themes/grub-of-tsushima
 ```
 
 3. Edit your GRUB config:
@@ -61,7 +66,8 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 - Base theme structure inspired by [sekiro_grub_theme](https://github.com/AbijithBalaji/sekiro_grub_theme) by [AbijithBalaji](https://github.com/AbijithBalaji) — MIT License
 - Background artwork from Ghost of Tsushima, property of Sony Interactive Entertainment / Sucker Punch Productions — no ownership claimed
-- Font: [Dersu Uzala Brush](https://www.fontspace.com/dersu-uzala-brush-font-f29alternativer) 
+- White variant font: [Cantarell](https://fonts.google.com/specimen/Cantarell)
+- Black variant font: [Dersu Uzala Brush](https://www.fontspace.com/dersu-uzala-brush-font-f29alternativer)
 - Terminal font: [Fira Code](https://github.com/tonsky/FiraCode)
 
 ---
