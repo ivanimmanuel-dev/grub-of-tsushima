@@ -58,6 +58,15 @@ sudo update-grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
+### Automated Installation
+
+For an easier and interactive installation process, you can run the provided `install.sh` script:
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
 
 ## Credits
 

@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# Ensure script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root (e.g. sudo ./install.sh)"
+  exit 1
+fi
+
+echo "============================================"
+echo "      Grub of Tsushima Theme Installer"
+echo "============================================"
+echo ""
+
+# Determine the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# Step 1: Select Variant
+echo "Please select the variant you want to install:"
+echo "1) Ghost of Tsushima - White (Clean, minimal, faithful to the game)"
+echo "2) Ghost of Tsushima - Black (Original version with icons)"
+echo "3) Cancel installation"
+echo ""
+
+read -p "Enter your choice [1-3]: " choice
+
+case $choice in
+    1)
+        THEME_DIR="grub-of-tsushima-white"
+        ;;
+    2)
+        THEME_DIR="grub-of-tsushima-black"
+        ;;
+    3)
+        echo "Installation cancelled."
+        exit 0
+        ;;
+    *)
+        echo "Invalid choice. Exiting."
+        exit 1
+        ;;
+esac
+
+if [ ! -d "$THEME_DIR" ]; then
+    echo "Error: Directory $THEME_DIR not found. Are you running this script from the theme's directory?"
+    exit 1
+fi
+
+echo ""
+echo "Selected variant: $THEME_DIR"
+echo ""
+
+# Step 2: Copy files
+THEME_DEST="/boot/grub/themes/grub-of-tsushima"
+
+echo "Step 1: Creating GRUB themes directory if it doesn't exist..."
+mkdir -p /boot/grub/themes
+
+echo "Step 2: Copying theme files to $THEME_DEST..."
+if [ -d "$THEME_DEST" ]; then
+    echo "  -> Removing old theme files..."
+    rm -rf "$THEME_DEST"
+fi
+cp -r "$THEME_DIR" "$THEME_DEST"
+
+# Step 3: Update GRUB configuration
+echo "Step 3: Updating /etc/default/grub..."
+
+# Backup the original config if backup doesn't exist
+if [ ! -f /etc/default/grub.bak ]; then
+    echo "  -> Creating backup at /etc/default/grub.bak"
+    cp /etc/default/grub /etc/default/grub.bak
+fi
+
+# Remove existing GRUB_THEME lines
+sed -i '/^GRUB_THEME=/d' /etc/default/grub
+# Append new theme config
+echo 'GRUB_THEME="/boot/grub/themes/grub-of-tsushima/theme.txt"' >> /etc/default/grub
+
+# Disable console output if enabled (it breaks graphical themes)
+sed -i 's/^\(GRUB_TERMINAL_OUTPUT="console"\)/#\1/' /etc/default/grub
+
+# Step 4: Update GRUB
+echo "Step 4: Updating GRUB bootloader..."
+
+if command -v update-grub &> /dev/null; then
+    update-grub
+elif command -v grub-mkconfig &> /dev/null; then
+    grub-mkconfig -o /boot/grub/grub.cfg
+elif command -v grub2-mkconfig &> /dev/null; then
+    grub2-mkconfig -o /boot/grub2/grub.cfg
+else
+    echo "Warning: Could not find a command to update GRUB."
+    echo "Please update GRUB manually."
+fi
+
+echo ""
+echo "============================================"
+echo "           Installation Complete!"
+echo "============================================"
+echo ""
