@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Ensure script is run as root
 if [ "$EUID" -ne 0 ]; then
   echo "Please run as root (e.g. sudo ./install.sh)"
@@ -51,13 +53,24 @@ echo "Selected variant: $THEME_DIR"
 echo ""
 
 # Step 2: Copy files
-THEME_DEST="/boot/grub/themes/grub-of-tsushima"
+if [ -d "/boot/grub2/themes" ] || [ -d "/boot/grub2" ]; then
+    GRUB_DIR="/boot/grub2"
+else
+    GRUB_DIR="/boot/grub"
+fi
+THEME_DEST="${GRUB_DIR}/themes/grub-of-tsushima"
 
 echo "Step 1: Creating GRUB themes directory if it doesn't exist..."
-mkdir -p /boot/grub/themes
+mkdir -p "${GRUB_DIR}/themes"
 
 echo "Step 2: Copying theme files to $THEME_DEST..."
 if [ -d "$THEME_DEST" ]; then
+    echo -n "Theme directory $THEME_DEST already exists. Do you want to overwrite it? [y/N]: "
+    read confirm
+    if [[ "$confirm" != [yY] && "$confirm" != [yY][eE][sS] ]]; then
+        echo "Installation cancelled."
+        exit 0
+    fi
     echo "  -> Removing old theme files..."
     rm -rf "$THEME_DEST"
 fi
@@ -65,6 +78,11 @@ cp -r "$THEME_DIR" "$THEME_DEST"
 
 # Step 3: Update GRUB configuration
 echo "Step 3: Updating /etc/default/grub..."
+
+if [ ! -f /etc/default/grub ]; then
+    echo "Error: /etc/default/grub does not exist."
+    exit 1
+fi
 
 # Backup the original config if backup doesn't exist
 if [ ! -f /etc/default/grub.bak ]; then
@@ -75,7 +93,9 @@ fi
 # Remove existing GRUB_THEME lines
 sed -i '/^GRUB_THEME=/d' /etc/default/grub
 # Append new theme config
-echo 'GRUB_THEME="/boot/grub/themes/grub-of-tsushima/theme.txt"' >> /etc/default/grub
+cat <<EOF >> /etc/default/grub
+GRUB_THEME="${THEME_DEST}/theme.txt"
+EOF
 
 # Disable console output if enabled (it breaks graphical themes)
 sed -i 's/^\(GRUB_TERMINAL_OUTPUT="console"\)/#\1/' /etc/default/grub

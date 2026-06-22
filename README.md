@@ -57,6 +57,7 @@ sudo update-grub
 ```bash
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
+*(Note: On Fedora, GRUB paths typically use `/boot/grub2/` instead of `/boot/grub/`. The `install.sh` script handles this automatically, but for manual installation, copy the theme to `/boot/grub2/themes/` and update `/etc/default/grub` to point to `/boot/grub2/themes/grub-of-tsushima/theme.txt`.)*
 
 ### Automated Installation
 
@@ -64,7 +65,7 @@ For an easier and interactive installation process, you can run the provided `in
 
 ```bash
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 
 
